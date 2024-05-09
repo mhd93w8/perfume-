@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favorite Products - My Perfume Store</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa; /* Light Gray */
+      font-family: Comic Sans MS”, cursive, sans-serif  ;
+    }
+    .navbar
+     {
+
+      box-shadow: 0  5px 10px rgb(217, 208, 228);
+     }
+
+    .navbar-nav .nav-link
+     {
+      font-size: 1.4rem;  /* font size in navbar*/
+      margin-right: 20px;
+
+      transition: color 0.3s;  /* NAVBAR التحكم بوقت غمق لون الازرار في */
+     }
+  
+    .navbar-nav .nav-link:hover
+     {
+      color: #000000;
+      transform: scale(1.2); /*  navbar زيادة حجم الخط عند التاشير على الزر في ال  */
+      transition:0.3s ; /*  navbarزمن زيادة حجم الخط عند التاشير على الزر في ال */
+     }
+ 
+    .cart-icon
+     {
+      margin-left: 100px;
+      margin-right: 100px;
+    
+     }
+
+  
+
+    .navbar-collapse {
+      justify-content: flex-end;
+    }
+
+
+    .navbar-brand img {
+      height: 25px;
+      width: auto;
+     
+    }
+    .container {
+      margin-top: 10px;
+    }
+
+    .product-card {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-card h2 {
+      color: #333; /* Dark Gray */
+      margin-bottom: 30px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    .product-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .product-item {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #f5f5f5; /* Light Gray */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .product-photo {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-right: 20px;
+      transition: transform 0.3s;
+    }
+
+    .product-item:hover .product-photo {
+      transform: scale(1.1);
+    }
+
+    .product-details {
+      flex-grow: 1;
+    }
+
+    .product-name {
+      color: #333; /* Dark Gray */
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .product-price {
+      color: #555; /* Gray */
+      font-size: 0.9rem;
+    }
+
+    .action-btn {
+      padding: 8px 16px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    }
+
+    .add-to-cart-btn {
+      background-color: #6D4C41       ; /* Blue */
+      border-color: #6D4C41; /* Blue */
+      color: #fff;
+      margin-right: 10px;
+    }
+
+    .add-to-cart-btn:hover {
+      background-color: #8d6558; /* Darker Blue */
+      border-color: #8d6558; /* Darker Blue */
+    }
+
+    .remove-btn {
+      background-color: #6D4C41; /* Red */
+      border-color: #6D4C41; /* Red */
+      color: #fff;
+    }
+
+    .remove-btn:hover {
+      background-color: #8d6558; /* Darker Red */
+      border-color: #8d6558; /* Darker Red */
+    }
+
+    .browse-more-btn {
+      background-color: #6D4C41; /* Green */
+      border-color: #6D4C41; /* Green */
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 30px;
+    }
+
+    .browse-more-btn:hover {
+      background-color: #6b5651; /* Darker Green */
+      border-color: #6b5651; /* Darker Green */
+    }
+
+    .empty-message {
+      color: #555; /* Gray */
+      text-align: center;
+      font-style: italic;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+    
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="Perfumey-Logo-Transparent.png" alt=""> 
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="main.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="section.html">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ABOUT.HTML">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="CONTACT.html">Contact</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link cart-icon" href="cart.HTML"><i class="fas fa-shopping-cart"></i><span id="cartCounter" class="cart-item-num"></span></a>
+                </li>
+                
+            </ul>
+            <form class="d-flex navbar-search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-dark" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+  </nav>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="product-card">
+          <h2>Favorite Products</h2>
+          <div id="productList" class="product-list">
+            <!-- Example product item -->
+            <form action="" method="post">
+              <div class="product-item">
+                <img src="Y0685240_F068522009_E01_ZHC.jpg" alt="Product Photo" class="product-photo">
+                <div class="product-details">
+                  <span class="product-name">Product Name 1</span>
+                  <span class="product-price">$19.99</span>
+                </div>
+                   <button class="action-btn add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                   <button class="action-btn remove-btn"><i class="fas fa-trash-alt"></i> Remove</button>
+                </div>
+               </div>
+            </form>
+            <!-- Example product item -->
+         
+            <!-- Add more product items dynamically using JavaScript -->
+         
+          <div class="text-center mt-3">
+            <a href="#" class="btn btn-primary browse-more-btn"><i class="fas fa-shopping-bag"></i> Browse More Products</a>
+          </div>
+          <p class="empty-message">You haven't added any products to your favorites yet.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="text-center text-lg-start mt-5 bg-dark text-white">
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Footer Content</h5>
+                <p>
+                    You can use rows and columns to organize your footer content.
+                </p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Links</h5>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2">
+                        <a href="#!" class="text-white text-decoration-none">Link 1</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#!" class="text-white text-decoration-none">Link 2</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Add Social Icons Section -->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Social Media</h5>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2">
+                        <a href="https://www.facebook.com"  target="_blank" class="text-white text-decoration-none"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" class="text-white text-decoration-none"><i class="fab fa-twitter"></i> Twitter</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" class="text-white text-decoration-none"><i class="fab fa-instagram"></i> Instagram</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- End Social Icons Section -->
+        </div>
+    </div>
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2024 My Perfume Store
+    </div>
+</footer>
+
+</body>
+</html>

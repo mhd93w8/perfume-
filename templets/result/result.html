@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfume Search Results</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+        font-family: Comic Sans MS”, cursive, sans-serif  ;
+      background-color: #f8f9fa;
+      color: #343a40;
+    }
+    .navbar-scrolled {
+    background-color: rgba(210, 196, 196, 0.9); /* Change background color when scrolled */
+    transition: background-color 0.3s ease-in-out;
+     
+}
+nav.navbar-scrolled {
+    background-color:#4e342e !important; /* Add !important to override Bootstrap styles */
+}
+
+
+
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #4E342E; /* Dark Brown */
+    }
+
+    .navbar-toggler {
+      border: none;
+      outline: none;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(0,0,0,.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .navbar-nav .nav-link {
+      font-size: 1.2rem;
+      margin-right: 20px;
+      color: #4E342E; /* Dark Brown */
+      transition: color 0.3s;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #6D4C41; /* Lighter Brown */
+    }
+
+    .navbar-nav .nav-item.active .nav-link {
+      color: #6D4C41; /* Lighter Brown */
+      font-weight: bold;
+    }
+
+    .navbar-collapse {
+      justify-content: flex-end;
+    }
+    
+
+    .navbar {
+      background-color: #e7e4e4; /* Light Orange */
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+      transition: background-color 0.3s ease-in-out; /* Add transition */
+    }
+    .navbar-brand,
+    .navbar-nav .nav-link,
+    .navbar .cart-icon,
+    .navbar .login-icon,
+    .navbar .signup-icon {
+      color: #4E342E; /* Dark Brown */
+      transition: color 0.3s; /* Add transition */
+    }
+    .navbar-scrolled {
+      background-color: rgba(210, 196, 196, 0.9); /* Change background color when scrolled */
+    }
+
+    .navbar-scrolled .navbar-brand,
+    .navbar-scrolled .navbar-nav .nav-link,
+    .navbar-scrolled .navbar .cart-icon,
+    .navbar-scrolled .navbar .login-icon,
+    .navbar-scrolled .navbar .signup-icon {
+      color: #FFF; /* White */
+    }
+
+    .navbar-brand img {
+      height:25px;
+      width: auto;
+      margin-top: -10px;
+    }
+
+    .navbar .cart-icon,
+    .navbar .login-icon,
+    .navbar .signup-icon {
+      font-size: 1.4rem; /* Adjusted size */
+      margin-left: 15px; /* Adjusted margin */
+      color: #4E342E; /* Dark Brown */
+      padding: 8px; /* Adjusted padding */
+      transition: color 0.3s;
+    }
+
+    .navbar .cart-icon:hover,
+    .navbar .login-icon:hover,
+    .navbar .signup-icon:hover {
+      color: #6D4C41; /* Lighter Brown */
+    }
+
+    .navbar-search {  
+      margin-right: 20px;
+    }
+
+    .result-item {
+      border-bottom: 1px solid #dee2e6;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+
+    .result-title {
+      font-size: 1.5rem;
+      color: #343a40;
+      margin-bottom: 10px;
+    }
+
+    .result-description {
+      font-size: 1.1rem;
+      color: #6c757d;
+      margin-bottom: 10px;
+    }
+
+    .result-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .no-results {
+      font-size: 1.2rem;
+      color: #dc3545;
+    }
+
+    .btn-add-to-cart {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #ffffff;
+      background-color: #5f4235;
+      border: none;
+      border-radius: 25px;
+      padding: 10px 30px;
+      transition: background-color 0.3s;
+    }
+
+    .btn-add-to-cart:hover {
+      background-color: #793a3ae1;
+    }
+
+    .fa-cart-plus {
+      margin-right: 5px;
+    }
+
+    .fa-shopping-cart {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav id="navbar" class="navbar navbar-expand-lg navbar-light fixed-top">
+  <!-- Your navbar content here -->
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="Perfumey-Logo-Transparent.png" alt="Logo"> 
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'main'%}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'shop'%}">Shop</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'about'%}">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contact'%}">Contact</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link cart-icon" href="{% url 'basket'%}"><i class="fas fa-shopping-cart"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link login-icon" href="{% url 'login'%}"><i class="fas fa-user"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link signup-icon" href="{% url 'sign_up'%}"><i class="fas fa-user-plus"></i></a>
+        </li>
+      </ul>
+      <form class="d-flex navbar-search" action="{% url 'result' %}" method="GET">
+        <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-dark" type="submit"><i class="fas fa-search"></i></button>
+    
+      </form>
+    
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+<br><br><br>
+<div>
+</form>
+<form action="{% url 'result' %}">
+{% if messages %}
+<div class="container mt-3">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {% for message in messages %}
+        <strong>Note:</strong> {{ message }}
+        {% endfor %}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
+{% endif %}
+</form>
+</div>
+<br><br><br><br>
+  
+<!-- Search Results -->
+<!-- Search Results -->
+<div class="container search-results">
+  
+  <!-- Check if products are found -->
+  {% if products %}
+  <h2 class="text-center mb-4" style="font-size: 24px; color: #333; font-weight: bold; text-transform: uppercase; border-bottom: 2px solid #ccc; padding-bottom: 10px;">
+    Perfume Search Results for: "{{ search_query }}"
+</h2>
+
+    <!-- Loop through the retrieved products and display them -->
+    {% for product in products %}
+    <br><br>
+      <div class="result-item row">
+        <div class="col-md-4">
+          <img src="{{ product.ImageURL }}" class="result-image" alt="{{ product.Name }}">
+        </div>
+        <div class="col-md-8">
+          <h3 class="result-title">{{ product.Name }}</h3>
+          <p class="result-description">{{ product.Description }}</p>
+          <p class="result-description"><strong>Price:</strong> {{ product.Price }}$</p>
+          <p class="result-description"><strong>Size:</strong> {{ product.Size }}</p>
+          <p class="result-description"><strong>Gender:</strong> {{ product.Gender }}</p>
+          <button class="btn btn-add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+          
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>
+
+
+  
+
+
+
+
+
+<div class="container search-results">
+  
+  <!-- Check if products are found -->
+  {% if contain %}
+  <h2 class="text-center mb-4" style="font-size: 24px; color: #333; font-weight: bold; text-transform: uppercase; border-bottom: 2px solid #ccc; padding-bottom: 10px;">
+    Perfume Search Results for: "{{ search_query }}"
+</h2>
+
+    <!-- Loop through the retrieved products and display them -->
+    {% for product in contain %}
+    
+       <br><br>
+      <div class="result-item row">
+        <div class="col-md-4">
+          <img src="{{ product.ImageURL }}" class="result-image" alt="{{ product.Name }}">
+        </div>
+        <div class="col-md-8">
+          <h3 class="result-title">{{ product.Name }}</h3>
+          <p class="result-description">{{ product.Description }}</p>
+          <p class="result-description"><strong>Price:</strong> {{ product.Price }}$</p>
+          <p class="result-description"><strong>Size:</strong> {{ product.Size }}</p>
+          <p class="result-description"><strong>Gender:</strong> {{ product.Gender }}</p>
+          <button class="btn btn-add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<!-- Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<script>
+     window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        var navbar = document.getElementById("navbar");
+        if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+            navbar.classList.add("navbar-scrolled");
+        } else {
+            navbar.classList.remove("navbar-scrolled");
+        }
+    }
+  $(document).ready(function() {
+    $('.star').click(function() {
+      var value = $(this).attr('data-value');
+      $(this).addClass('selected');
+      $(this).prevAll('.star').addClass('selected');
+      $(this).nextAll('.star').removeClass('selected');
+      // You can add code here to send the rating to the server or perform other actions
+    });
+  });
+  document.querySelector('.navbar-search').addEventListener('submit', function() {
+        document.querySelectorAll('.alert').forEach(function(alert) {
+            alert.remove();
+        });
+    });
+  
+  
+</script>
+</body>
+</html>

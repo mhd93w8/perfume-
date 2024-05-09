@@ -1,0 +1,444 @@
+
+{% load static%}
+<link rel="stylesheet" href="{% static 'css/style.css'%}">
+
+
+{% endblock content %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Perfume Store</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    
+    body{
+                font-family: Comic Sans MS”, cursive, sans-serif  ; 
+             }
+         nav{position: relative;}
+         .navbar-brand {
+                font-size: 1.8rem;
+             }
+
+         .navbar-nav .nav-link {
+                font-size: 1.2rem; /* حجم الخط  */ 
+                margin-right: 20px;
+                transition: color 0.8 s;
+             }
+
+         .navbar-nav .nav-link:hover {
+                color: #68473d; 
+                transform: scale(1.2);
+                transition: calc(0.3s) ;
+                
+             }
+            
+         .navbar {
+                background-color: #e7e4e4; 
+                box-shadow: 0px 2px 5px rgba(204, 203, 200, 0.938);
+                padding: 15px 0;
+             }
+
+         .navbar-brand img {
+                height:25px;
+                width: auto;
+                margin-top: -10px;
+                margin-left: -70px;
+                margin-right: 40px;
+             }
+
+         .navbar .cart-icon,
+         .navbar .login-icon,
+         .navbar .signup-icon {
+               font-size: 1.4rem; 
+               margin-left: 15px; 
+               color: #4E342E; 
+               padding: 8px;
+               transition: color 0.3s;
+             }
+.navbar-scrolled {
+     transition: background-color 0.3s ease-in-out;
+     
+}
+nav.navbar-scrolled {
+    background-color:#ebd5d5 !important; /* Add !important to override Bootstrap styles */
+}
+
+.product-card {
+              transition: transform 0.3s;
+             }
+
+         .product-card:hover {
+             transform: translateY(-5px);
+             }
+
+         .product-card .card-title {
+             font-size: 1.4rem;
+             font-weight: bold;
+             color: #5f3f38; 
+             }
+
+         .product-card .card-text {
+             color: #757575;
+             }
+
+         .product-card .btn-primary {
+             background-color: #6D4C41; 
+             border-color: #6D4C41; 
+             }
+   /* Rating and Favorite Button Styles */
+        .rating-fav {
+             position: absolute;
+             bottom: 18px;
+             right: 10px;
+             }
+
+        .rating {
+             display: contents;
+             font-size: 24px;
+             color: #ffc107; /* Star color when not selected */
+             cursor: pointer;
+             }
+
+        .star:hover,  
+        .star:hover ~ .star {
+             color: #ff9800; /* Star color on hover */
+             }
+
+        .selected {
+             color: #ff9800; /* Star color when selected */
+             }
+
+        .favorite-btn {
+            color: #ff6b6b;
+          
+            font-size: 24px;
+            margin-left: 10px;
+            cursor: pointer;
+            border: none;
+            background: #ffffff;
+             }
+
+        .favorite-btn:hover {
+             color: #ff0000; /* Change color on hover */
+             }
+
+
+    /* Hero Section */
+    .hero-content {
+      padding: 160px 0;
+      background-image: linear-gradient(to right, rgba(255, 254, 253, 0.527), rgba(255, 255, 254, 0.486)), url(/static/image/e2517ddf9da9da6c759704f24162a0fbbe5145e792fd61ee7278902dfb173338.jpg) ;
+      background-size: cover;
+      color: #4E342E; /* Dark Brown */
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+
+    }
+
+    .hero-content h1 {
+      font-size: 4rem;
+      font-weight: bold;
+      margin-bottom: 30px;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeInUp 1s ease-out forwards, slideUp 1s ease-out forwards;
+    }
+
+    .hero-content p {
+      font-size: 1.8rem;
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeInUp 1s ease-out forwards, slideUp 1s ease-out forwards;
+      animation-delay: 0.5s;
+    }
+
+    .hero-content .btn-primary {
+      font-size: 1.4rem;
+      padding: 12px 40px;
+      border-radius: 40px;
+      background-color: #6D4C41; /* Lighter Brown */
+      color: #f0e4e4;
+      border-color: #6D4C41; /* Lighter Brown */
+      transition: all 0.3s;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeInUp 1s ease-out forwards, slideUp 1s ease-out forwards;
+      animation-delay: 1s;
+    }
+
+    .hero-content .btn-primary:hover {
+      background-color: #4E342E; /* Dark Brown */
+      border-color: #4E342E; /* Dark Brown */
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+.error
+{
+  border: #c4b8b8 solid;
+  position: absolute;
+  margin-left: 310px;
+ 
+}
+.profile{
+  color: #000000;
+  position: absolute;
+  margin-left: 92%;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+
+/*
+*/
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav id="navbar" class="navbar navbar-expand-lg navbar-light fixed-top">
+    <!-- Your navbar content here -->
+    <div class="container">
+      <a class="navbar-brand" href="">
+        <img src="/static/image/Perfumey-Logo-Transparent.png" alt="Logo"> 
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{% url 'main'%}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'shop'%}">Shop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about'%}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact'%}">Contact</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link cart-icon" href="{% url 'basket'%}"><i class="fas fa-shopping-cart"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link login-icon" href="{% url 'login'%}"><i class="fas fa-user"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link signup-icon" href="{% url 'sign_up'%}"><i class="fas fa-user-plus"></i></a>
+          </li>
+        </ul>
+       
+      
+       
+        <form class="d-flex navbar-search" action="{% url 'result' %}" method="GET">
+          <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-dark" type="submit"><i class="fas fa-search"></i></button>
+      </form>
+     
+      
+      
+      </div>
+      
+    </div>
+    <a class="profile" href="{% url 'profile'%}" ><i class="fas fa-user"></i>
+      {% if request.session.user_logged_in %}
+      {{ acc_name }}
+       
+       
+      {% else %}
+     name
+      {% endif %}
+  </a>
+  </nav>
+ 
+
+  <!-- Hero Section -->
+  <div class="container-fluid hero-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <h1>Welcome to My Perfume Store</h1>
+          <p class="lead">Discover the essence of elegance and luxury.</p>
+          <a href="{% url 'shop'%}" class="btn btn-primary">Shop Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  {% if messages %}
+  <div class="container mt-3">
+      <div class="error" role="alert">
+          {% for message in messages %}
+          <strong>Error:</strong> {{ message }}
+          {% endfor %}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+  </div>
+  {% endif %}
+ 
+  <!-- Featured Products Section -->
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Featured Products</h2>
+    <div class="row">
+      {% for product in pro|slice:":3" %}
+      <div class="col-md-4">
+        <div class="card product-card">
+          <a href="">
+            <img id="product-image-{{ product.id }}" src="{{ product.ImageURL }}" class="card-img-top" alt="Product Image">
+          </a>
+            <div class="card-body">
+              <h5 class="card-title">{{ product.Name }}</h5>
+              <p class="card-text">{{ product.Price }}$</p>
+              <form method="post" action="{% url 'add_to_cart' %}">
+                {% csrf_token %}
+                <input type="hidden" name="product_id" value="{{ product.id }}">
+                <input type="hidden" name="product_name" value="{{ product.Name }}">
+                <input type="hidden" name="product_price" value="{{ product.Price }}">
+                <input type="hidden" name="product_quantity" value="{{ product.Quantity }}">
+                <input type="hidden" name="product_image" value="{{ product.ImageURL }}">
+                <button type="submit" class="btn btn-primary">Add to Cart</button>
+            </form>
+            <div class="rating-fav">
+             
+              <div class="rating">
+                <span class="star" data-value="5">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="1">&#9733;</span>
+              </div>
+              <!-- Favorite Button -->
+              <button class="favorite-btn"><i class="far fa-heart"></i></button>
+            </div>
+            <!-- Add to Cart button -->
+          
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+ 
+  <!-- Footer -->
+  <footer class="text-center text-lg-start mt-5 bg-dark text-white">
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Footer Content</h5>
+                <p>
+                  Luxury in Every Bottle <br>
+                  Discover Your Essence <br>
+                  Indulge Your Senses  </p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Links</h5>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2">
+                        <a href="#!" class="text-white text-decoration-none">Link 1</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#!" class="text-white text-decoration-none">Link 2</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Add Social Icons Section -->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Social Media</h5>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2">
+                        <a href="https://www.facebook.com"  target="_blank" class="text-white text-decoration-none"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" class="text-white text-decoration-none"><i class="fab fa-twitter"></i> Twitter</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" class="text-white text-decoration-none"><i class="fab fa-instagram"></i> Instagram</a>
+                    </li> 
+                </ul>
+            </div>
+            <!-- End Social Icons Section -->
+        </div>
+    </div>
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2024 My Perfume Store
+    </div>
+</footer>
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <!-- Include jQuery -->
+  
+
+
+
+<script>
+     window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        var navbar = document.getElementById("navbar");
+        if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+            navbar.classList.add("navbar-scrolled");
+        } else {
+            navbar.classList.remove("navbar-scrolled");
+        }
+    }
+
+    function showMessage(message) {
+    var messageTextElement = document.getElementById("messageText");
+    messageTextElement.textContent = message;
+
+    var messageContainer = document.getElementById("messageContainer");
+    messageContainer.style.display = "block";
+}
+
+function closeMessageBox() {
+    var messageContainer = document.getElementById("messageContainer");
+    messageContainer.style.display = "none";
+}
+showMessage("This is an error message.");
+
+    
+   
+</script>
+
+
+
+
+
+</body>
+</html>
+{% endblock content %}

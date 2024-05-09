@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customizable Perfumes</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+ 
+  <style>
+    /* CSS styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    .container {
+      display: flex;
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .left-container, .right-container {
+      position: relative;
+      flex: 1;
+      padding: 0 20px;
+    }
+    h1, h2 {
+      font-size: 2rem;
+      text-align: center;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    select, input[type="range"], input[type="number"], input[type="color"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      background-color: #4CAF50;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 8px;
+      cursor: pointer;
+      background: #ddd;
+      border-radius: 5px;
+    }
+    input[type="range"]::-moz-range-track {
+      width: 100%;
+      height: 8px;
+      cursor: pointer;
+      background: #ddd;
+      border-radius: 5px;
+    }
+    span.intensity {
+      display: inline-block;
+      width: 40px;
+      margin-left: 10px;
+      text-align: right;
+    }
+    button {
+     
+      width: 40%;
+      height: 50px;
+      padding: 10px;
+      margin-left: 140px;
+      margin-top: 100px;
+      text-align: center;
+     
+     
+     
+      cursor: pointer;
+    }
+
+    #result {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 20px 0;
+    }
+    .error {
+      color: #ff0000;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+    .note-description {
+      font-size: 14px;
+      color: #666;
+      margin-top: 5px;
+    }
+    .intensity {
+      display: inline-block;
+      width: 40px;
+      margin-left: 10px;
+      font-size: 14px;
+    }
+
+
+    /* Styling the button */
+.bbtn {
+  border: none;
+ height: auto;
+  padding: 10px 20px;
+  cursor: pointer;
+  outline: none;
+  background-color: #fff;
+  position: absolute;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added box shadow for depth */
+  font-family: Arial, sans-serif; /* Use a common sans-serif font */
+  color: #fff; /* Text color */
+  font-size: 16px; /* Font size */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added transition for transform and box-shadow */
+}
+
+/* Styling the image */
+.bbtn img {
+  width: 80px; /* Adjust image size */
+  height: auto; /* Maintain aspect ratio */
+  vertical-align: middle; /* Align image vertically */
+  margin-right: 10px; /* Add spacing between image and text */
+}
+
+/* Styling the hover effect */
+.bbtn:hover {
+  transform: translateY(-3px); /* Move the button up slightly on hover */
+  box-shadow: 0 6px 10px rgba(255, 106, 106, 0.2); /* Increase shadow for depth effect */
+  
+}
+
+/* Optional: Adding hover animation */
+.bbtn:hover img {
+ 
+  transform: scale(1.3); /* Scale the image on hover */
+  transition-duration: 02s;
+}
+
+
+
+
+
+
+  </style>
+</head>
+<body>
+  <div class="container mt-5" >
+    <div class="left-container">
+      <h1 class="mb-4">Create Your Own Custom Perfume</h1>
+      <form id="customization-form" method="POST" >
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="base-notes" data-toggle="tooltip" title="Select the base note that forms the foundation of your perfume.">Base Notes:</label>
+          <select id="base-notes" class="form-control" name="base_notes" required>
+            <option value="">Select Base Note</option>
+            <option value="musk">Musk</option>
+            <option value="vanilla">Vanilla</option>
+            <option value="sandalwood">Sandalwood</option>
+            <option value="amber">Amber</option>
+            <option value="patchouli">Patchouli</option>
+            <option value="cedarwood">Cedarwood</option>
+            <option value="empty">Empty Perfume Bottle</option>
+          </select>
+          <p class="note-description">Musk: A warm, sensual note with earthy and animalistic undertones.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="base-intensity" data-toggle="tooltip" title="Adjust the intensity of the selected base note.">Base Intensity:</label>
+          <input type="range" id="base-intensity" class="form-control-range" min="0" max="100" value="33.33" name="base_intensity">
+          <span class="intensity" id="base-intensity-value">33.33%</span>
+        </div>
+
+        <div class="form-group">
+          <label for="middle-notes" data-toggle="tooltip" title="Choose a middle note to complement the base note and add complexity to your perfume.">Middle Notes:</label>
+          <select id="middle-notes" class="form-control" name="middle_notes" required>
+            <option value="">Select Middle Note</option>
+            <option value="floral">Floral</option>
+            <option value="fruity">Fruity</option>
+            <option value="spicy">Spicy</option>
+            <option value="jasmine">Jasmine</option>
+            <option value="lavender">Lavender</option>
+            <option value="rose">Rose</option>
+            <option value="empty">Empty Perfume Bottle</option>
+          </select>
+          <p class="note-description">Floral: Fresh, sweet, and often with green or powdery facets.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="middle-intensity" data-toggle="tooltip" title="Adjust the intensity of the selected middle note.">Middle Intensity:</label>
+          <input type="range" id="middle-intensity" class="form-control-range" min="0" max="100" value="33.33" name="middle_intensity">
+          <span class="intensity" id="middle-intensity-value">33.33%</span>
+        </div>
+
+        <div class="form-group">
+          <label for="top-notes" data-toggle="tooltip" title="Select a top note to provide the initial impression of your perfume.">Top Notes:</label>
+          <select id="top-notes" class  ="form-control" name="top_notes" required>
+          <option value="">Select Top Note</option>
+          <option value="citrus">Citrus</option>
+          <option value="herbal">Herbal</option>
+          <option value="woody">Woody</option>
+          <option value="bergamot">Bergamot</option>
+          <option value="lemon">Lemon</option>
+          <option value="peppermint">Peppermint</option>
+          <option value="empty">Empty Perfume Bottle</option>
+        </select>
+        <p class="note-description">Citrus: Bright, zesty, and refreshing, often with hints of fruitiness.</p>
+      </div>
+
+      <div class="form-group">
+        <label for="top-intensity" data-toggle="tooltip" title="Adjust the intensity of the selected top note.">Top Intensity:</label>
+        <input type="range" id="top-intensity" class="form-control-range" min="0" max="100" value="33.33" name="top_intensity">
+        <span class="intensity" id="top-intensity-value">33.33%</span>
+      </div>
+
+      <div class="error mt-2" id="error-message"></div>
+    
+    <div id="result" class="text-center mt-4">Your custom perfume ingredients will be displayed here.</div>
+  </div>
+
+  <div class="right-container">
+    <h2 class="mb-4">Choose Perfume Bottle</h2>
+  
+      <source media="(min-width: )" srcset="">
+      <img src="" alt="">
+    </picture>
+    <div class="form-group">
+      <label for="bottle-type">Perfume Bottle Type:</label>
+      <select id="bottle-type" class="form-control" name="bottle_type">
+        <option value="standard">Standard</option>
+        <option value="luxury">Luxury</option>
+        <option value="designer">Designer</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="bottle-size">Perfume Bottle Size (ml):</label>
+      <input type="number" id="bottle-size" class="form-control" min="1" value="50" name="bottle_size">
+    </div>
+    <div class="form-group">
+      <label for="bottle-color">Perfume Bottle Color:</label>
+      <input type="color" id="bottle-color" class="form-control" name="bottle_color">
+    </div>
+    <div class="form-group">
+      <label for="bottle-material">Perfume Bottle Material:</label>
+      <select id="bottle-material" class="form-control" name="bottle_material">
+        <option value="glass">Glass</option>
+        <option value="plastic">Plastic</option>
+        <option value="metal">Metal</option>
+           
+    </div>
+  </div>
+</div>
+</select>
+
+<button type="submit"  class="bbtn">
+  <img src="icons8-perfume-bottle-96.png" alt="">
+</button>
+</form>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <script>
+        $(document).ready(function(){
+          // Initialize Bootstrap tooltips
+          $('[data-toggle="tooltip"]').tooltip();
+        });
+  
+        // JavaScript function to handle perfume customization
+        function customizePerfume() {
+          var totalIntensity = 0;
+          var intensityInputs = document.querySelectorAll('input[type="range"]');
+          intensityInputs.forEach(function(input) {
+            totalIntensity += parseInt(input.value);
+          });
+  
+          var errorMessage = document.getElementById('error-message');
+          errorMessage.textContent = ''; // Clear any previous error message
+  
+          if (totalIntensity === 100) {
+            var baseNotes = document.getElementById('base-notes').value;
+            var middleNotes = document.getElementById('middle-notes').value;
+            var topNotes = document.getElementById('top-notes').value;
+  
+            var result = "Your custom perfume contains: " + baseNotes + " (Intensity: " + (parseFloat(document.getElementById('base-intensity').value)).toFixed(2) + "%), " + middleNotes + " (Intensity: " + (parseFloat(document.getElementById('middle-intensity').value)).toFixed(2) + "%), and " + topNotes + " (Intensity: " + (parseFloat(document.getElementById('top-intensity').value)).toFixed(2) + "%) notes.";
+            document.getElementById('result').textContent = result;
+            smoothScrollTo(document.getElementById('result')); // Smooth scroll to result
+            document.getElementById('customization-form').reset(); // Reset form after creating perfume
+          } else {
+            errorMessage.textContent = 'The total intensity must be 100%. Please adjust the intensity levels.';
+          }
+        }
+  
+        // Update intensity values display
+        var intensityInputs = document.querySelectorAll('input[type="range"]');
+        intensityInputs.forEach(function(input) {
+          var span = input.nextElementSibling;
+          input.addEventListener('input', function() {
+            var totalIntensity = 0;
+            var currentValue = parseFloat(this.value);
+            var otherInputs = document.querySelectorAll('input[type="range"]:not(#' + this.id + ')');
+            otherInputs.forEach(function(otherInput) {
+              totalIntensity += parseFloat(otherInput.value);
+            });
+            var remainingIntensity = 100 - totalIntensity;
+            var adjustedValue = Math.min(currentValue, remainingIntensity); // Ensure the value does not exceed the remaining intensity
+            this.value = adjustedValue;
+            span.textContent = adjustedValue.toFixed(2) + "%";
+  
+            // Update other intensity values
+            var otherSpan = document.getElementById(otherInputs[0].id + '-value');
+            otherSpan.textContent = (parseFloat(otherInputs[0].value)).toFixed(2) + "%";
+          });
+        });
+  
+        // Function to highlight fields with errors
+        function highlightErrors() {
+          var inputs = document.querySelectorAll('select:invalid');
+          inputs.forEach(function(input) {
+            input.style.border = '2px solid #ff0000';
+          });
+        }
+  
+        // Function to smoothly scroll to a target element
+        function smoothScrollTo(target) {
+          const startY = window.pageYOffset;
+          const targetY = target.getBoundingClientRect().top + startY;
+          const distance = Math.abs(startY - targetY);
+          const duration = 500;
+          let start = null;
+  
+          function step(timestamp) {
+            if (!start) start = timestamp;
+            const progress = timestamp - start;
+            const percentage = Math.min(progress / duration, 1);
+            window.scrollTo(0, startY + (targetY - startY) * percentage);
+            if (progress < duration) {
+              window.requestAnimationFrame(step);
+            }
+          }
+  
+          window.requestAnimationFrame(step);
+        };
+        function customizePerfume() {
+  var totalIntensity = 0;
+  var intensityInputs = document.querySelectorAll('input[type="range"]');
+  intensityInputs.forEach(function(input) {
+    totalIntensity += parseInt(input.value);
+  });
+
+  var errorMessage = document.getElementById('error-message');
+  errorMessage.textContent = ''; // Clear any previous error message
+
+  var baseNotes = document.getElementById('base-notes').value;
+  var middleNotes = document.getElementById('middle-notes').value;
+  var topNotes = document.getElementById('top-notes').value;
+  var bottleType = document.getElementById('bottle-type').value;
+
+  if (baseNotes === "" || middleNotes === "" || topNotes === "" || bottleType === "") {
+    errorMessage.textContent = 'Please fill out all the required fields.';
+    return; // Stop further execution if any required field is empty
+  }
+
+  if (totalIntensity === 100) {
+    var result = "Your custom perfume contains: " + baseNotes + " (Intensity: " + (parseFloat(document.getElementById('base-intensity').value)).toFixed(2) + "%), " + middleNotes + " (Intensity: " + (parseFloat(document.getElementById('middle-intensity').value)).toFixed(2) + "%), and " + topNotes + " (Intensity: " + (parseFloat(document.getElementById('top-intensity').value)).toFixed(2) + "%) notes. Enclosed in a " + bottleType + " perfume bottle.";
+    document.getElementById('result').textContent = result;
+    smoothScrollTo(document.getElementById('result')); // Smooth scroll to result
+    document.getElementById('customization-form').reset(); // Reset form after creating perfume
+  } else {
+    errorMessage.textContent = 'The total intensity must be 100%. Please adjust the intensity levels.';
+  }
+}
+      </script>
+</body>
+</html>

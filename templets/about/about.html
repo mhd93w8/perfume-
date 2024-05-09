@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+   body{
+                font-family: Comic Sans MS”, cursive, sans-serif  ;
+                background-color: #e7e4e4; 
+             }
+         nav{position: relative;}
+         .navbar-brand {
+                font-size: 1.8rem;
+             }
+
+         .navbar-nav .nav-link {
+                font-size: 1.2rem; /* حجم الخط  */ 
+                margin-right: 20px;
+                transition: color 0.8 s;
+             }
+
+         .navbar-nav .nav-link:hover {
+                color: #68473d; 
+                transform: scale(1.2);
+                transition: calc(0.3s) ;
+                
+             }
+            
+         .navbar {
+                background-color: #e7e4e4; 
+                box-shadow: 0px 2px 5px rgba(204, 203, 200, 0.938);
+                padding: 15px 0;
+             }
+
+         .navbar-brand img {
+                height:25px;
+                width: auto;
+                margin-top: -10px;
+                margin-left: -70px;
+                margin-right: 40px;
+             }
+
+         .navbar .cart-icon,
+         .navbar .login-icon,
+         .navbar .signup-icon {
+               font-size: 1.4rem; 
+               margin-left: 15px; 
+               color: #4E342E; 
+               padding: 8px;
+               transition: color 0.3s;
+             }
+.navbar-scrolled {
+     transition: background-color 0.3s ease-in-out;
+     
+}
+nav.navbar-scrolled {
+    background-color:#d6d6d6 !important; /* Add !important to override Bootstrap styles */
+}
+
+.profile{
+  color: #000000;
+  position: absolute;
+  margin-left: 92%;
+  text-decoration: none;
+  font-size: 1.2rem;
+
+}
+   
+    .about-us-content {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #343a40;
+      margin-bottom: 30px;
+    }
+
+    .highlight {
+      color: #007BFF;
+      font-weight: bold;
+    }
+
+    .about-us-image {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+
+    .list-group-item {
+      background-color: transparent;
+      border: none;
+      font-size: 1.1rem;
+      color: #343a40;
+      padding-left: 0;
+    }
+
+    .list-group-item i {
+      margin-right: 10px;
+      color: #007BFF;
+    }
+
+    .list-group-item:hover {
+      color: #007BFF;
+      cursor: pointer;
+    }
+
+    .quote {
+      font-style: italic;
+      margin-top: 20px;
+      margin-bottom: 30px;
+      color: #6C757D;
+    }
+
+    .team-member {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .team-member img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .team-member img:hover {
+      transform: scale(1.1);
+    }
+
+    .team-member h4 {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      color: #343a40;
+    }
+
+    .team-member p {
+      color: #6C757D;
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .cta-btn {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #ffffff;
+      background-color: #007BFF;
+      border: none;
+      border-radius: 25px;
+      padding: 10px 30px;
+      transition: background-color 0.3s;
+    }
+
+    
+    
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav id="navbar" class="navbar navbar-expand-lg navbar-light fixed-top">
+  <!-- Your navbar content here -->
+  <div class="container">
+    <a class="navbar-brand" href="">
+      <img src="/static/image/Perfumey-Logo-Transparent.png" alt="Logo"> 
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{% url 'main'%}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'shop'%}">Shop</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'about'%}">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contact'%}">Contact</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link cart-icon" href="{% url 'basket'%}"><i class="fas fa-shopping-cart"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link login-icon" href="{% url 'login'%}"><i class="fas fa-user"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link signup-icon" href="{% url 'sign_up'%}"><i class="fas fa-user-plus"></i></a>
+        </li>
+      </ul>
+     
+    
+     
+      <form class="d-flex navbar-search" action="{% url 'result' %}" method="GET">
+        <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-dark" type="submit"><i class="fas fa-search"></i></button>
+    </form>
+   
+    
+    
+    </div>
+    
+  </div>
+  
+  
+</nav>
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <div class="about-us-content">
+        <h2 class="section-title">About Us</h2>
+        <img src="/static/image/Perfumey-Logo-Transparent.png" class="img-fluid about-us-image" alt="About Us Image">
+        <p><span class="highlight">My Perfume Store</span> is a premier destination for luxury perfumes and fragrances. We offer a curated selection of the finest scents from around the world, providing our customers with an unparalleled olfactory experience.</p>
+        <p>Our journey began with a passion for perfumery and a commitment to excellence. We believe that fragrance is a powerful form of self-expression, and we strive to help our customers find the perfect scent that complements their unique personality and style.</p>
+        <p>At <span class="highlight">My Perfume Store</span>, we are dedicated to providing exceptional products, personalized service, and expert advice. Whether you're searching for your signature scent or looking for the perfect gift for a memorable occasion, we're here to help you find the perfect match.</p>
+        <h3 class="mt-4">Our Mission</h3>
+        <p>Our mission is to redefine the fragrance shopping experience, providing our customers with exceptional products, personalized service, and unparalleled expertise. We are dedicated to helping you discover the perfect scent that elevates your senses and enhances your lifestyle.</p>
+        <h3 class="mt-4">Why Choose Us?</h3>
+        <ul class="list-group">
+          <li class="list-group-item"><i class="fas fa-check-circle"></i> Wide Selection of Premium Fragrances</li>
+          <li class="list-group-item"><i class="fas fa-check-circle"></i> Expertly Curated Collection</li>
+          <li class="list-group-item"><i class="fas fa-check-circle"></i> Personalized Service and Advice</li>
+          <li class="list-group-item"><i class="fas fa-check-circle"></i> Fast and Secure Shipping</li>
+          <li class="list-group-item"><i class="fas fa-check-circle"></i> Satisfaction Guarantee</li>
+        </ul>
+        <p class="quote">"Our passion for perfumery drives us to provide an exceptional experience for every customer."</p>
+        <h3 class="mt-4">Meet Our Team</h3>
+        <div class="row">
+          <div class="col-md-4 team-member">
+            <img src="/static/image/FB_IMG_1715011025969.jpg" alt="Team Member 1">
+            <h4>kotaiba zohaily</h4>
+         
+          </div>
+          <div class="col-md-4 team-member">
+            <img src="/static/image/FB_IMG_1715011025969.jpg" alt="Team Member 2">
+            <h4>Mhamd Saleh</h4>
+          
+          </div>
+          <div class="col-md-4 team-member">
+            <img src="/static/image/417117904_2540737709438727_6996489737601185989_n.jpg" alt="Team Member 3">
+            <h4>mohamd khalaf</h4>
+          
+          </div>
+        </div>
+        <form action="{% url 'contact' %}">
+          <div class="cta">
+            <button class="cta-btn">Contact Us</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- Footer -->
+  <footer class="text-center text-lg-start mt-5 bg-dark text-white">
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Footer Content</h5>
+                <p>
+                  Luxury in Every Bottle <br>
+                  Discover Your Essence <br>
+                  Indulge Your Senses  </p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Links</h5>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2">
+                        <a href="#!" class="text-white text-decoration-none">Link 1</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#!" class="text-white text-decoration-none">Link 2</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Add Social Icons Section -->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase">Social Media</h5>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2">
+                        <a href="https://www.facebook.com"  target="_blank" class="text-white text-decoration-none"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" class="text-white text-decoration-none"><i class="fab fa-twitter"></i> Twitter</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" class="text-white text-decoration-none"><i class="fab fa-instagram"></i> Instagram</a>
+                    </li> 
+                </ul>
+            </div>
+            <!-- End Social Icons Section -->
+        </div>
+    </div>
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2024 My Perfume Store
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+ var navbar = document.getElementById("navbar");
+ if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+     navbar.classList.add("navbar-scrolled");
+ } else {
+     navbar.classList.remove("navbar-scrolled");
+ }
+}
+$(document).ready(function() {
+$('.star').click(function() {
+var value = $(this).attr('data-value');
+$(this).addClass('selected');
+$(this).prevAll('.star').addClass('selected');
+$(this).nextAll('.star').removeClass('selected');
+// You can add code here to send the rating to the server or perform other actions
+});
+});
+
+</script>
+</body>
+</html>
